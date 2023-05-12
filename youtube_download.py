@@ -1,5 +1,6 @@
 from pytube import YouTube
 import os
+from funciones import output_format as of
 
 
 def formatos(video_instance, formato):
@@ -37,6 +38,7 @@ def verificar_formato(video_instance, formato):
             return False
         return formato
     else:
+        print(f"{of.error(formato, 'btn')} {of.error('no es un formato válido')}")
         return False
 
 
@@ -65,7 +67,7 @@ video_instance = YouTube(url_video)
 
 formato_descargar = False
 while not formato_descargar:
-    print("\nFormatos admitidos: MP4, MKV, WEBM y Audio")
+    print(f"\nFormatos admitidos: {of.info('MP4, MKV, WEBM y Audio')}")
     formato_descargar = input(
         "Ingrese el formato en el que desea descargar el video: ")
     formato_descargar = verificar_formato(
